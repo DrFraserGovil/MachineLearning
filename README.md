@@ -8,7 +8,25 @@ I have included the code for my self-implemented network - the majority of the i
 
 The code makes use of my personal plotting and command-line argument library (DrFraserGovil/JSL.git), which is packaged as a submodule, so please clone recursively:
 
-```git clone --recurse-submodules -j8 git://github.com/DrFraserGovil/MachineLearning.git```
+```git clone --recurse-submodules git://github.com/DrFraserGovil/MachineLearning.git```
+
+The plotting library makes use of gnuplot begind the scenes, so will only work on systems with that available (else you can cannibalise out the plotting portion of the code)
+
+The code compiles using any post-C++11 version (I think). I personally use C++17, so compile as:
+
+```g++ -std=c++17 -O3 ml_test.cpp -o ml```
+
+The code makes use of Command Line Arguments which are poorly documented because this was just a toy problem:
+
+``` ./ml -mode M -l LAYERS -activation ACTIVATE -datacount N -test```
+
+Where:
+* MODE changes the shape of the generated dataset - 0 uses a donut shape, 1 a XOR, 2 a `pokeball', and 3 a crazy sine-wave shape
+* LAYERS sets the number of layers (with the number of nodes per layer set using a predetermined architechture -- mess around on line 176 if you want to change that)
+* ACTIVATE sets the activation function used in all layers except the last: 0 uses ReLu, 1 uses sigmoid, 2 uses linear, 3 uses sine
+* N sets the amount of datapoints -- more makes a better fit, but takes longer. 10% of data is reserved for validation
+* -test is a toggle which disables the network and just plots the data, for demonstration
+
 
 ## The Notes
 
